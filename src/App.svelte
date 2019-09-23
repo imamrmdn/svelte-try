@@ -1,5 +1,11 @@
 <script>
+  import SideBar from "./SideBar.svelte";
 
+  let showSideBar = false;
+
+  function toggleSideBar() {
+    showSideBar = !showSideBar;
+  }
 </script>
 
 <style>
@@ -12,7 +18,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    min-height: 4rem;
+    height: 10vh;
   }
   .row {
     display: flex;
@@ -23,24 +29,27 @@
     padding: 0 0.5rem;
     color: #fff;
     font-size: 1.1rem;
-	font-weight: 500;
+    font-weight: 500;
     cursor: pointer;
   }
-
-  .brand {
-	  font-size: 1.2rem;
-  }
-
 </style>
 
-<nav>
-  <div class="container">
+<div>
+  <nav>
+    <div class="container">
 
-    <p class="brand">Simantek</p>
+      <p on:click={toggleSideBar}>
+        <i class="fi-cnlrxl-barcode-solid" />
+      </p>
 
-    <div class="row">
-      <p class="item">Sign in</p>
-      <p class="item">Sign up</p>
+      <div class="row">
+        <p class="item">Sign in</p>
+        <p class="item">Sign up</p>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  {#if showSideBar}
+    <SideBar {toggleSideBar} />
+  {/if}
+
+</div>
